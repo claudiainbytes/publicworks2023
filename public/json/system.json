@@ -1,0 +1,56 @@
+{ 
+    "menu": [
+        {
+            "id": 1,
+            "name": {
+                "es": "Intro",
+                "en": "Intro"
+            },
+            "href": "",
+            "target":""
+        },
+        {
+            "id": 2,
+            "name": {
+                "es": "Habilidades",
+                "en": "Skills"
+            },
+            "href": "",
+            "target":""
+        },
+        {
+            "id": 3,
+            "name": {
+                "es": "Proyectos",
+                "en": "Projects"
+            },
+            "href": "",
+            "target":""
+        },
+        {
+            "id": 4,
+            "name": {
+                "es": "Blog",
+                "en": "Blog"
+            },
+            "href": "https://claudiainbytes.wordpress.com/",
+            "target":"_blank"
+        }
+    ],
+    "buttons": [
+        {
+            "id": 1,
+            "name": {
+                "es": "Ver más",
+                "en": "See now"
+            }
+        },
+        {
+            "id": 2,
+            "name": {
+                "es": "Cerrar",
+                "en": "Close"
+            }
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.social-media-icon-link {
+    @apply btn btn-link btn-md no-underline hover:no-underline mx-0
+}
+
+.card.image-full {
+    border-radius: 0;
+}
+.card.image-full:before {
+    border-radius: 0;
+}
+.card.image-full .btn {
+    border-radius: 0;
+}
+.card.image-full:before {
+    opacity: 0.3;
+}
+.card.image-full .modal-box :where(figure) {
+    border-radius: 0;
+}
+.card.image-full .modal-box ul li{
+    display: inline;
+}
