@@ -1,0 +1,15 @@
+name: Módulo de filtro de consolidado Obras
+description: Módulo que enlista en un bloque las obras filtradas por salud, educacion, movilidad seguridad y cultura
+package: Custom
+type: module
+core: 8.x
+libraries:
+  - filtro_consolidado_obras/all
+  # - filtro_consolidado_obras/vue2
+  # - filtro_consolidado_obras/axios
+  # - filtro_consolidado_obras/VuejsPaginate
+  # - filtro_consolidado_obras/moment
+  # - filtro_consolidado_obras/vue-slick-carousel
+  # - filtro_consolidado_obras/vue-moment-lib
+  # - filtro_consolidado_obras/Vue2Filters
+  # - filtro_consolidado_obras/filtro_consolidado_obras

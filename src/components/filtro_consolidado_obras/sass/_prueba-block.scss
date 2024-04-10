@@ -1,0 +1,48 @@
+.block-moduloprueba.block-prueba-block {
+    .content {
+        display: flex;
+        justify-content: center;
+        .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 90%;
+            height: 90%;
+            &:after {
+                content: "";
+                display: block;
+                padding-bottom: 100%;
+            }
+            &__square-1, &__square-2, &__square-3 {
+                position: absolute;
+                border: 4px solid $rojo;
+                background-color: $blanco;
+                box-sizing: border-box;
+                width: inherit;
+                height: inherit;
+            }
+            &__square-1 {
+                z-index: 1;
+            }
+            &__square-2 {
+                z-index: 2;
+                background-color: $azul;
+                -webkit-transform: scale(0.706) rotateY(0deg) rotate(45deg);
+                -moz-transform: scale(0.706) rotateY(0deg) rotate(45deg);
+                -ms-transform: scale(0.706) rotateY(0deg) rotate(45deg);
+                -o-transform: scale(0.706) rotateY(0deg) rotate(45deg);
+                transform: scale(0.706) rotateY(0deg) rotate(45deg); 
+            }
+            &__square-3 {
+                transform: scale(0.5);
+                z-index: 3;
+            }
+            &__square-2, &__square-3 {
+                border: 4px solid $rojo;
+                border-radius: 4px;
+            }
+        }
+        
+    }
+}

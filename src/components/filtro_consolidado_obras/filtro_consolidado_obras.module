@@ -1,0 +1,13 @@
+<?php
+/**
+ * Implements hook_theme().
+ */
+function filtro_consolidado_obras_theme($existing, $type, $theme, $path) {
+  return [
+    'block-filtro-consolidado-obras' => [
+      'variables' => [
+				'title' => "Titulo desde module",
+			],
+    ],
+  ];
+}

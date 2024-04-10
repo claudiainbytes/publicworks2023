@@ -1,0 +1,169 @@
+{# {{ attach_library('filtro_consolidado_obras/vue2') }}
+{{ attach_library('filtro_consolidado_obras/axios') }}
+{{ attach_library('filtro_consolidado_obras/VuejsPaginate') }}
+{{ attach_library('filtro_consolidado_obras/vue-moment') }}
+{{ attach_library('filtro_consolidado_obras/vue-slick-carousel') }}
+{{ attach_library('filtro_consolidado_obras/Vue2Filters') }} #}
+{{ attach_library('filtro_consolidado_obras/all') }}
+{# {{ attach_library('filtro_consolidado_obras/filtro_consolidado_obras') }} #}
+{% verbatim %}
+<div class="filtro-consolidado-obras">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 mb-30">
+                    <h2 class="text-left block-title" style="display:block;">Avance de las obras en Bogotá</h2>
+                <p class="text-left font-rajdhani_medium txt-movilidad">Consulta el tipo de obra y el estado actual de cada proyecto que la Alcaldía de Bogotá adelanta en la ciudad.</p>
+            </div>
+        </div>
+    </div>
+    <div class="cn-avances mt-4 pt-0 pt-md-4" id="avances-component-app">
+        <div class="container">
+                <div v-if="errored">
+                    <p class="text-center font-rajdhani_medium txt-movilidad">Lo sentimos, no es posible obtener la información en este momento, por favor intente nuevamente mas tarde.</p>
+                </div>
+                <div v-else class="">
+                    <div v-if="loading">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="text-center font-rajdhani_medium txt-movilidad">Cargando...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else> 
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-3">
+                                <div class="filtro-avance d-flex flex-column mb-4 mb-lg-5">
+                                    <label class="">Filtrar por eje temático</label>
+                                    <select class="filtro-avance-eje_tematico" name="filtro-avance-eje_tematico" id="filtro-avance-eje_tematico" v-model="searchByEje" v-on:change="getEje">
+                                        <option value="">-- Todos los ejes temáticos</option>
+                                        <option value="MOVILIDAD">Movilidad</option>
+                                        <option value="SALUD">Salud</option>
+                                        <option value="EDUCACIÓN">Educación</option>
+                                        <option value="OTROS">Seguridad y cultura</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-3">
+                                <div class="filtro-avance d-flex flex-column mb-4 mb-lg-5">
+                                    <label class="">Filtrar por localidad</label>
+                                    <select class="" name="filtro-avance-localidad" id="filtro-avance-localidad" v-model="searchByLocalidad">
+                                        <option value="">-- Todas las localidades</option>
+                                        <option value="Antonio Nariño">Antonio Nariño</option>
+                                        <option value="Barrios Unidos">Barrios Unidos</option>
+                                        <option value="Bosa">Bosa</option>
+                                        <option value="Chapinero">Chapinero</option>
+                                        <option value="Ciudad Bolívar">Ciudad Bolívar</option>
+                                        <option value="Engativá">Engativá</option>
+                                        <option value="Fontibón">Fontibón</option>
+                                        <option value="Kennedy">Kennedy</option>
+                                        <option value="La Candelaria">La Candelaria</option>
+                                        <option value="Los Mártires">Los Mártires</option>
+                                        <option value="Puente Aranda">Puente Aranda</option>
+                                        <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
+                                        <option value="San Cristóbal">San Cristóbal</option>
+                                        <option value="Santa Fe">Santa Fe</option>
+                                        <option value="Suba">Suba</option>
+                                        <option value="Sumapaz">Sumapaz</option>
+                                        <option value="Teusaquillo">Teusaquillo</option>
+                                        <option value="Tunjuelito">Tunjuelito</option>
+                                        <option value="Usaquén">Usaquén</option>
+                                        <option value="Usme">Usme</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-3">
+                                <div class="filtro-avance d-flex flex-column mb-4 mb-lg-5">
+                                    <label class="">Filtrar por tipo de construcción</label>
+                                    <select class="filtro-avance-tipo_construcion" name="filtro-avance-tipo_construcion" id="filtro-avance-tipo_construcion" v-model="searchByTipo">
+                                        <option value="">-- Todos los tipos de construcción</option>
+                                        <option v-for="(option,i) in displayedTiposconstrucion" v-bind:value="option.valor" v-bind:key="(i+1)">{{option.texto}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-3">
+                                <div class="filtro-avance d-flex flex-column mb-4 mb-lg-5">
+                                    <label class="">Filtrar por nombre de proyecto</label>
+                                    <input class="filtro-avance-palabra_clave" type="text" id="filtro-avance-palabra_clave" name="filtro-avance-palabra_clave" v-model="searchByProyecto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                    <div class="row">
+                                        <div v-for="item in displayedPosts" class="col-sm-12 col-lg-4">
+                                            <!--card-->
+                                            <a class="card p-3 mb-3" data-toggle="modal" v-bind:data-target="'#exampleModal' + item.id">
+                                                <div class="card-container">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="flex-imagen-title">
+                                                                <div class="flex-imagen-title_1">
+                                                                    <div class="imagen">
+                                                                        <img class="img-fluid" v-if="item.imagenes.length !== 0" v-bind:src="item.baseUrlDirImages + '/' + item.id + '/' + item.imagenes[0]" v-bind:alt="item.nombre_proyecto">
+                                                                        <img class="img-fluid" v-else v-bind:src="defaultImage" v-bind:alt="item.nombre_proyecto">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-imagen-title_2">
+                                                                    <p class="colegio font-ubuntu_bold txt-negro">{{ item.nombre_proyecto }}</p>
+                                                                </div>    
+                                                            </div>    
+                                                        </div>    
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">    
+                                                            <div class="detalle-info-container">
+                                                                <p v-show="item.localidad" class="localidad  text-left font-style_normal font-rajdhani_bold txt-movilidad">{{ item.localidad }}</p>
+                                                                <p v-show="item.entidad" class="ubicacion text-left font-style_normal font-rajdhani_medium txt-gris">{{ item.entidad }}</p>
+                                                                <p v-show="item.tipo_de_proyecto" class="ubicacion text-left font-style_normal font-rajdhani_medium txt-gris">{{ item.tipo_de_proyecto }}</p>
+                                                                <p v-show="item.estado_actual" class="estado text-left font-style_italic font-rajdhani_medium txt-gris">{{ item.estado_actual }}</p>
+                                                                <p v-if="item.inversion_pdd_millones !== '-'" class="detalle-info text-left font-style_normal font-rajdhani_medium txt-gris my-0"><strong>Inversión PDD: </strong >${{ item.inversion_pdd_millones | number('0,0', { thousandsSeparator: "'"}) }}  MILLONES</p>
+                                                                <p v-if="item.total_inversion_millones !== '-'" class="detalle-info text-left font-style_normal font-rajdhani_medium txt-gris my-0"><strong>Total Inversión: </strong >${{ item.total_inversion_millones | number('0,0', { thousandsSeparator: "'"}) }} MILLONES</p>
+                                                                <p v-show="item.fecha_inicio_obra" class="detalle-info text-left font-style_normal font-rajdhani_medium txt-gris my-0"><strong>Fecha Inicio Obra: </strong >{{ item.fecha_inicio_obra | moment().format("DD-MM-YYYY") }}</p>
+                                                                <p v-show="item.fecha_terminacion_obra" class="detalle-info text-left font-style_normal font-rajdhani_medium txt-gris my-0"><strong>Fecha Terminación Obra: </strong >{{ item.fecha_terminacion_obra | moment().format("DD-MM-YYYY") }}</p>
+                                                                <p v-show="item.total_empleo" class="detalle-info text-left font-style_normal font-rajdhani_medium txt-gris my-0"><strong>Empleos: </strong >{{ item.total_empleo }}</p>
+                                                            </div>
+                                                        </div>    
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!--card-->
+                                            <!-- Modal -->
+                                            <avancemodal v-bind:item="item" v-bind:key="item.id"/>
+                                            <!-- Modal -->
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row" v-if="displayedPosts.length == 0">
+                            <div class="col-sm-12">
+                                <p class="text-center font-rajdhani_medium mt-20 mb-20">No hay resultados que coincidan con la búsqueda.</p>
+                            </div>
+                        </div>
+                        <div class="row" v-else>
+                            <div class="col-sm-12 text-center pt-3 pb-0 py-md-4 py-lg-4">
+                                <div class="d-flex justify-content-center">
+                                    <paginate
+                                        :page-count="getNumPages()"
+                                        :page-range="3"
+                                        :initial-page="1"
+                                        :container-class="'pagination'"
+                                        :page-class="'page-item'"
+                                        :prev-class="'page-item'"
+                                        :next-class="'page-item'"
+                                        :page-link-class="'page-link'"
+                                        :prev-link-class="'page-link'"
+                                        :next-link-class="'page-link'"
+                                        :prev-text="'<<'"
+                                        :next-text="'>>'"
+                                        :hide-prev-next="true"
+                                        :click-handler="clickOnPage">
+                                    </paginate>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+{% endverbatim %}

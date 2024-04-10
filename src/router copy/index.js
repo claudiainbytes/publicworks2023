@@ -5,8 +5,13 @@ const router = createRouter({
     routes: [
       {
         path: '/',  
-        name: 'PublicWorks',
-        component: () => import('../views/PublicWorks.vue')
+        name: 'Intro',
+        component: () => import('../views/Intro.vue')
+      },
+      {
+        path: '/skills', 
+        name: 'Skills',
+        component: () => import('../views/Skills.vue')
       },
       {
         path: '/projects', 
@@ -16,7 +21,7 @@ const router = createRouter({
       {
         path: '/:catchAll(.*)',
         name: '404Name',
-        redirect: { name: 'PublicWorks' } 
+        redirect: { name: 'Intro' } 
       }
     ]
   })

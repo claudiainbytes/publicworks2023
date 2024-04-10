@@ -1,0 +1,94 @@
+{
+    "filtros": 
+        {
+            "ejes_tematicos": [
+                { 
+                  "texto": "Movilidad",
+                  "valor": "MOVILIDAD",
+                  "base_url_imagenes": "https://bogota.gov.co/bog/json-obras/avances-obras/movilidad" 
+                },
+                { 
+                  "texto": "Salud",
+                  "valor": "SALUD",
+                  "base_url_imagenes": "https://bogota.gov.co/bog/json-obras/avances-obras/salud" 
+                },
+                { 
+                  "texto": "Educación",
+                  "valor": "EDUCACIÓN",
+                  "base_url_imagenes": "https://bogota.gov.co/bog/json-obras/avances-obras/educacion" 
+                },
+                { 
+                  "texto": "Seguridad y cultura",
+                  "valor": "OTROS",
+                  "base_url_imagenes": "https://bogota.gov.co/bog/json-obras/avances-obras/seguridad" 
+                }
+            ],
+            "tipos_construcion": [
+                {
+                    "eje": "MOVILIDAD",
+                    "texto": "Metro",
+                    "valor": "Metro" 
+                },
+                {
+                    "eje": "MOVILIDAD",
+                    "texto": "Cable aéreo",
+                    "valor": "Cable aéreo" 
+                },
+                {
+                    "eje": "MOVILIDAD",
+                    "texto": "Cicloinfraestructura",
+                    "valor": "Cicloinfraestructura" 
+                },
+                {
+                    "eje": "MOVILIDAD",
+                    "texto": "Corredor verde y TM.",
+                    "valor": "Corredor verde y TM." 
+                },
+                {
+                    "eje": "SALUD",
+                    "texto": "Hospitales",
+                    "valor": "Hospitales" 
+                },
+                {
+                    "eje": "SALUD",
+                    "texto": "Centros de atención en salud",
+                    "valor": "Centros de atención en salud" 
+                },
+                {
+                    "eje": "EDUCACIÓN",
+                    "texto": "Sedes Universitarias",
+                    "valor": "Sedes Universitarias" 
+                },
+                {
+                    "eje": "EDUCACIÓN",  
+                    "texto": "Colegio nuevo o restituido",
+                    "valor": "Colegio nuevo o restituido" 
+                },
+                {
+                    "eje": "EDUCACIÓN",
+                    "texto": "Jardines infantiles y sedes primera infancia",
+                    "valor": "Jardines infantiles y sedes primera infancia" 
+                },
+                {
+                    "eje": "OTROS",
+                    "texto": "Vivienda y desarrollo urbano",
+                    "valor": "Vivienda y desarrollo urbano" 
+                },
+                {
+                    "eje": "OTROS",  
+                    "texto": "Cultura",
+                    "valor": "Cultura" 
+                },
+                {
+                    "eje": "OTROS",
+                    "texto": "Recreación",
+                    "valor": "Recreación" 
+                },
+                {
+                    "eje": "OTROS",
+                    "texto": "Seguridad ciudadana",
+                    "valor": "Seguridad ciudadana" 
+                }
+            ]
+        }
+}

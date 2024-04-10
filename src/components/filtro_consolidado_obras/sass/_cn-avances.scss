@@ -1,0 +1,234 @@
+.cn-avances {
+    background-color: $bg-avances !important;
+    .card {
+        border-radius: unset;
+        text-decoration: none;
+        background-color: $white;
+        box-shadow: 3px 3px 3px $dusty-gray;
+        transition: 0.3s;
+        @include bp-custom("min", 1200px) {
+            height: 485px;
+        }
+        .card-container {
+            position: relative;
+            display: block;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            border: 0;
+            height: 470px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 23px;
+        }
+        .imagen {
+            border: 1px solid $dusty-gray;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            width: auto;
+            height: auto;
+            @include bp-custom("max", 991px) {
+                width: 200px;
+                height: 200px;
+            }
+            &:after {
+                content: "";
+                display: block;
+                padding-bottom: 100%;
+            }
+            img {
+                position: absolute;
+                max-width: unset;
+                width: auto;
+                height: 100%
+            }
+        }
+        .colegio {
+            display: block;
+            width: 100%;
+        }
+        .ubicacion {
+            display: block;
+            width: 100%;
+        }
+        .localidad {
+            border-top: 2px dashed $mycl-botones-titulos;
+            border-bottom: 2px dashed $mycl-botones-titulos;
+            color: $mycl-botones-titulos;
+            font-weight: bold;
+            padding: 5px 0;
+            margin-right: 10px;
+            text-transform: uppercase;
+        }
+        .estado {
+            display: block;
+            width: 100%;
+        }
+        .detalle {
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            display: -webkit-box;
+            max-width: 100%;
+        }
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: -6px 8px 12px #d1d1d1;
+            position: relative;
+            border: 1px solid $mycl-botones-titulos;
+        } 
+        .detalle-info-container {
+            display: block;
+        }
+    }
+}
+ul.pagination {
+    li.page-item {
+        a.page-link {
+            color: $mycl-botones-titulos;
+            font-family: $rajdhani-font;
+            font-size: 20px;
+            line-height: 20px;
+            font-weight: 500;
+            padding: 10px 15px 10px 15px;
+            transition: 0.3s;
+            &:hover, &:focus {
+                color: $white;
+                background-color: $mycl-botones-titulos;
+                border: 1px solid $mycl-botones-titulos;
+            }
+        }
+        &.active {
+            a.page-link {
+                color: $white;
+                background-color: $mycl-botones-titulos;
+                border: 1px solid $mycl-botones-titulos;
+            }
+        }
+    }
+}
+.filtro-avance {
+    border: 2px dashed $mycl-botones-titulos;
+    padding: 20px 15px;
+    label {
+        font-family: $ubuntu-font;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 18px;
+        margin-bottom: 15px;
+    }
+    input[type=text], select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 47px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 1px solid $silver;
+        font-family: $rajdhani-font;
+        font-weight: bold;
+        box-sizing: border-box;
+        color: $cn-gris-1;
+        font-size: 18px;
+        transition: .3s;
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &:active {
+            border: 1px solid $mycl-botones-titulos;
+            outline: $mycl-botones-titulos solid 1px;
+            border-radius: 0;
+        }
+        &:active {
+            color: $mycl-botones-titulos;
+        }
+    }
+    select {
+        background-position: 97% 50%;
+        background-repeat: no-repeat;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYEAYAAACw5+G7AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gYOEzAXIaN+sQAAAK1JREFUWMPtj8ENwjAMAG1VYoFmBSSGYo++SNK++mYaRukQnQDJMh/SB6hq0iS4SL6P5cSPOwBFURRJkCY7t9eugzPc8TGO0kLREDgw3uOy/0vIW7w5Dc089T1+/R815EM8POPq/VFCVsQ3A8RDNsSjA34eEimeHFA9JFF8d0DxkJ3i2QHZIZnixQKSQwqJVyOEEFlrDPMyn5bMxTlpv/gQvnHL3ocp7aMoilKHF5AVnUvpnSigAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA2LTE0VDE5OjQ4OjIzKzAwOjAwJt7mrQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wNi0xNFQxOTo0ODoyMyswMDowMFeDXhEAAAAASUVORK5CYII=');
+        background-size: 16px;
+        padding: .5em;
+        padding-right:1.5em;
+        option {
+            background-color: $white;
+            border: 1px solid $silver;
+            border-radius: 0;
+            outline: none;
+            font-family: $rajdhani-font;
+            &:selected {
+                background-color: $mycl-botones-titulos;
+            }
+        }
+    }
+}
+//Modal Obras
+#avances-component-app {
+    .modal {
+        z-index: 10010 !important;
+    }
+} 
+.obra-modal {
+    .modal-header {
+        border-bottom: 0;
+        h5 {
+            line-height: 24px !important;
+        }
+    }
+    .modal-body {
+        padding-top: 0;
+    }
+    .obra-carousel {
+        position: relative;
+        padding-bottom: 30px;
+        display: block;
+        width: 100%;
+        .image {
+            .img-fluid {
+                width: 100%;
+            }
+        }
+        .slick-arrow {
+            z-index: 1;
+        }
+        .slick-prev::before,
+        .slick-next::before {
+            color: $white;
+            opacity: 1;
+            font-size: 30px;
+        }
+        .slick-prev {
+            left: 7px;
+        }
+        .slick-next {
+            right: 17px;
+        }
+        .slick-dots li.slick-active button::before {
+            color: $mycl-botones-titulos;
+        }
+        .slick-dots li button::before {
+            color: $mycl-botones-titulos;
+            font-size: 16px;
+            opacity: 1;
+        }
+    }
+    .obra-detalle-info {
+        p {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            line-height: normal;
+        }
+    }
+}

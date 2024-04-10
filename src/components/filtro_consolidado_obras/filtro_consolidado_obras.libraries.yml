@@ -1,0 +1,84 @@
+filtro_consolidado_obras:
+  version: 1.x
+  css:
+    component:
+      css/style.css: {}
+  # js:
+  #   js/vue/avances-obras.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - filtro_consolidado_obras/all
+    # - filtro_consolidado_obras/vue2
+    # - filtro_consolidado_obras/axios
+    # - filtro_consolidado_obras/VuejsPaginate
+    # - filtro_consolidado_obras/moment
+    # - filtro_consolidado_obras/vue-slick-carousel
+    # - filtro_consolidado_obras/Vue2Filters
+
+all:
+  js:
+    js/vue/all.min.js: {minified: true}
+
+# vue2:
+#   js:
+#     https://bogota.gov.co/bog/vue-js-obras/vue-2_6_14.min.js: {type: external, minified: true}
+# axios:
+#   js:
+#     https://bogota.gov.co/bog/vue-js-obras/axios_0_27_2.min.js: {type: external, minified: true}
+# VuejsPaginate:
+#   js:
+#     https://bogota.gov.co/bog/vue-js-obras/vue_paginate_2_1_0.min.js: {type: external, minified: true}
+# moment:
+#   js:
+#     https://bogota.gov.co/bog/vue-js-obras/vue_moment_2_29_3.min.js: {type: external, minified: true}
+# Vue2Filters:
+#   js:
+#     https://bogota.gov.co/bog/vue-js-obras/vue2-filters.min.js: {type: external, minified: true}
+# vue-slick-carousel:
+#   js:   
+#      https://bogota.gov.co/bog/vue-js-obras/vue_slick_carousel_1_0_6.js: {type: external, minified: true}
+# vue-moment-lib:
+#   js:
+#     https://bogota.gov.co/bog/vue-js-obras/vue-moment-lib.umd.min.js: {type: external, minified: true}
+
+# vue2:
+#   js:
+#     js/vue/vue-2_6_14.min.js: {minified: true}
+# axios:
+#   js:
+#     js/vue/axios_0_27_2.min.js: {minified: true}
+# VuejsPaginate:
+#   js:
+#     js/vue/vue_paginate_2_1_0.min.js: {minified: true}
+# moment:
+#   js:
+#     js/vue/vue_moment_2_29_3.min.js: {minified: true}
+# Vue2Filters:
+#   js:
+#     js/vue/vue2-filters.min.js: {minified: true}
+# vue-slick-carousel:
+#   js:   
+#      js/vue/vue_slick_carousel_1_0_6.js: {minified: true}
+# vue-moment-lib:
+#   js:
+#     js/vue/vue-moment-lib.umd.min.js: {minified: true}
+
+# vue2:
+#   js:
+#     https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.common.dev.min.js: {type: external, minified: true}
+# axios:
+#   js:
+#     https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js: {type: external, minified: true}
+# VuejsPaginate:
+#   js:
+#     https://cdnjs.cloudflare.com/ajax/libs/vue-paginate/2.1.0/vue-paginate.min.js: {type: external, minified: true}
+# moment:
+#   js:
+#     https://cdn.jsdelivr.net/npm/vue-moment@2.2.0/vue-moment.min.js: {type: external, minified: true}
+# Vue2Filters:
+#   js:
+#     https://cdnjs.cloudflare.com/ajax/libs/vue2-filters/0.14.0/vue2-filters.min.js: {type: external, minified: true}
+# vue-slick-carousel:
+#   js:   
+#      https://unpkg.com/vue-slick-carousel: {type: external, minified: true}

@@ -1,28 +1,6 @@
 <template>
-    <div class="w-full grid grid-cols-1 gap-8">
-        <div class="prose max-w-none">
-            <h2 class="mb-4 text-secondary">{{ introData.title[currentLang.lang] }}</h2>
-            <p class="mb-4">{{ introData.description[currentLang.lang] }}</p>
-            <div class="divider"></div> 
-        </div>
-    </div>
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        <div class="prose max-w-none">
-            <h2 class="mb-4 text-secondary">{{ introData.education.title[currentLang.lang] }}</h2>
-            <p class="mb-4" v-for="education in education_list" :key="education.id">
-              <span><strong>{{ education.degree_major[currentLang.lang] }}</strong></span><br/>
-              <span>{{ education.institute[currentLang.lang] }}</span><br/>
-              <span>{{ education.years[currentLang.lang] }}</span><br/>
-            </p>
-        </div>
-        <div class="prose max-w-none">
-            <h2 class="mb-4 text-secondary">{{ introData.experience.title[currentLang.lang] }}</h2>
-            <p class="mb-4" v-for="experience in experience_list" :key="experience.id">
-              <span><strong>{{ experience.role }}</strong></span><br/>
-              <span>{{ experience.company[currentLang.lang] }}</span><br/>
-              <span>{{ experience.years[currentLang.lang] }}</span><br/>
-            </p>
-        </div>
+    <div class="container py-4 px-3 mx-auto">
+      <h1>Public Works</h1>
     </div>
 </template>
 <script setup>

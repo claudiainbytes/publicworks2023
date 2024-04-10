@@ -1,9 +1,5 @@
 <template>
-    <div class="w-full grid grid-cols-1 gap-8">
-        <div class="prose max-w-none">
-            <h2 class="mb-4 text-secondary">{{ skillsData.title[currentLang.lang] }}</h2>
-            <p class="mb-4" v-html="skillsData.description[currentLang.lang]"></p>
-        </div>
+    <div>
     </div>
 </template>
 <script setup>
