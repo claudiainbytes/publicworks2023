@@ -5,6 +5,13 @@
           <p>Bogota's infraestructure projects during the government of major Claudia Lopez from 2020 to 2023.</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+          <div class="pw-nav">
+            <Paginator :paginator="setPaginator"  />
+          </div>  
+        </div>
+    </div>
     <div class="row mb-4 mb-lg-4">
         <div class="col-12 col-lg-3">
           <div class="form-group">
@@ -50,183 +57,94 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-4" v-for="item in publicWorksData">
           <a class="pw-card">
             <div class="pw-card-top">
               <div class="pw-card-top_left">
                 <div class="pw-card-top_left-circle">
-                  <img 
-                      src="https://bogota.gov.co/bog/json-obras/avances-obras/educacion/SDIS10/sdis10a.jpg" 
-                      alt="Jardín Infantil Predio Santa Teresita" 
-                  >
+                  <img v-if="item.imagenes.length !== 0" v-bind:src="baseUrlDirImages + '/' + item.id + '/' + item.imagenes[0]" v-bind:alt="item.nombre_proyecto">
+                  <img class="img-fluid" v-else v-bind:src="defaultImage" v-bind:alt="item.nombre_proyecto">
                 </div>
               </div>
               <div class="pw-card-top_right">
-                <h3>Jardín Infantil Predio Santa Teresita</h3>
+                <h3 v-show="item.nombre_proyecto">{{ item.nombre_proyecto }}</h3>
               </div>
             </div>
             <div class="pw-card-middle">
-                <h3>San Cristóbal</h3>
+                <h3 v-if="item.localidad">{{ item.localidad }}</h3>
+                <h3 v-else>Desconocida</h3>
             </div>
-            <div class="pw-card-button">
-                <p>Secretaría Distrital de Integración Social Jardines infantiles y sedes primera infancia Obras(terminado)</p>
-                <p><strong>Inversión PDD:</strong> $18 MILLONES<br/>
-                   <strong>Total Inversión:</strong> $10'078 MILLONES<br/>
-                   <strong>Fecha Inicio Obra:</strong> 01-06-2019<br/>
-                   <strong>Fecha Terminación Obra:</strong> 01-12-2020<br/>
-                   <strong>Empleos:</strong> -</p>
-            </div>
-          </a>  
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <a class="pw-card">
-            <div class="pw-card-top">
-              <div class="pw-card-top_left">
-                <div class="pw-card-top_left-circle">
-                  <img 
-                      src="https://bogota.gov.co/bog/json-obras/avances-obras/educacion/SDIS10/sdis10a.jpg" 
-                      alt="Jardín Infantil Predio Santa Teresita" 
-                  >
+            <div class="pw-card-bottom">
+                <div class="description">
+                  <p v-show="item.entidad"><strong>{{ item.entidad }}</strong></p>
+                  <p v-show="item.tipo_de_proyecto"><strong>Tipo de proyecto: </strong>{{ item.tipo_de_proyecto }}</p>
+                  <p v-show="item.estado_actual"><strong>Estado actual: </strong>{{ item.estado_actual }}</p>
                 </div>
-              </div>
-              <div class="pw-card-top_right">
-                <h3>Jardín Infantil Predio Santa Teresita</h3>
-              </div>
-            </div>
-            <div class="pw-card-middle">
-                <h3>San Cristóbal</h3>
-            </div>
-            <div class="pw-card-button">
-                <p>Secretaría Distrital de Integración Social Jardines infantiles y sedes primera infancia Obras(terminado)</p>
-                <p><strong>Inversión PDD:</strong> $18 MILLONES<br/>
-                   <strong>Total Inversión:</strong> $10'078 MILLONES<br/>
-                   <strong>Fecha Inicio Obra:</strong> 01-06-2019<br/>
-                   <strong>Fecha Terminación Obra:</strong> 01-12-2020<br/>
-                   <strong>Empleos:</strong> -</p>
-            </div>
-          </a>  
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <a class="pw-card">
-            <div class="pw-card-top">
-              <div class="pw-card-top_left">
-                <div class="pw-card-top_left-circle">
-                  <img 
-                      src="https://bogota.gov.co/bog/json-obras/avances-obras/educacion/SDIS10/sdis10a.jpg" 
-                      alt="Jardín Infantil Predio Santa Teresita" 
-                  >
+                <div class="details"><p v-if="item.inversion_pdd_millones !== '-'"><strong>Inversión PDD: </strong>${{ item.inversion_pdd_millones }}</p>
+                   <p v-if="item.total_inversion_millones !== '-'"><strong>Total Inversión: </strong>${{ item.total_inversion_millones }}</p>
+                   <p v-show="item.fecha_inicio_obra"><strong>Fecha Inicio Obra: </strong>{{ item.fecha_inicio_obra }}</p>
+                   <p v-show="item.fecha_terminacion_obra"><strong>Fecha Terminación Obra: </strong>{{ item.fecha_terminacion_obra }}</p>
+                   <p v-show="item.total_empleo"><strong>Empleos: </strong>{{ item.total_empleo }}</p>
                 </div>
-              </div>
-              <div class="pw-card-top_right">
-                <h3>Jardín Infantil Predio Santa Teresita</h3>
-              </div>
-            </div>
-            <div class="pw-card-middle">
-                <h3>San Cristóbal</h3>
-            </div>
-            <div class="pw-card-button">
-                <p>Secretaría Distrital de Integración Social Jardines infantiles y sedes primera infancia Obras(terminado)</p>
-                <p><strong>Inversión PDD:</strong> $18 MILLONES<br/>
-                   <strong>Total Inversión:</strong> $10'078 MILLONES<br/>
-                   <strong>Fecha Inicio Obra:</strong> 01-06-2019<br/>
-                   <strong>Fecha Terminación Obra:</strong> 01-12-2020<br/>
-                   <strong>Empleos:</strong> -</p>
             </div>
           </a>  
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <a class="pw-card">
-            <div class="pw-card-top">
-              <div class="pw-card-top_left">
-                <div class="pw-card-top_left-circle">
-                  <img 
-                      src="https://bogota.gov.co/bog/json-obras/avances-obras/educacion/SDIS10/sdis10a.jpg" 
-                      alt="Jardín Infantil Predio Santa Teresita" 
-                  >
-                </div>
-              </div>
-              <div class="pw-card-top_right">
-                <h3>Jardín Infantil Predio Santa Teresita</h3>
-              </div>
-            </div>
-            <div class="pw-card-middle">
-                <h3>San Cristóbal</h3>
-            </div>
-            <div class="pw-card-button">
-                <p>Secretaría Distrital de Integración Social Jardines infantiles y sedes primera infancia Obras(terminado)</p>
-                <p><strong>Inversión PDD:</strong> $18 MILLONES<br/>
-                   <strong>Total Inversión:</strong> $10'078 MILLONES<br/>
-                   <strong>Fecha Inicio Obra:</strong> 01-06-2019<br/>
-                   <strong>Fecha Terminación Obra:</strong> 01-12-2020<br/>
-                   <strong>Empleos:</strong> -</p>
-            </div>
-          </a>  
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <a class="pw-card">
-            <div class="pw-card-top">
-              <div class="pw-card-top_left">
-                <div class="pw-card-top_left-circle">
-                  <img 
-                      src="https://bogota.gov.co/bog/json-obras/avances-obras/educacion/SDIS10/sdis10a.jpg" 
-                      alt="Jardín Infantil Predio Santa Teresita" 
-                  >
-                </div>
-              </div>
-              <div class="pw-card-top_right">
-                <h3>Jardín Infantil Predio Santa Teresita</h3>
-              </div>
-            </div>
-            <div class="pw-card-middle">
-                <h3>San Cristóbal</h3>
-            </div>
-            <div class="pw-card-button">
-                <p>Secretaría Distrital de Integración Social Jardines infantiles y sedes primera infancia Obras(terminado)</p>
-                <p><strong>Inversión PDD:</strong> $18 MILLONES<br/>
-                   <strong>Total Inversión:</strong> $10'078 MILLONES<br/>
-                   <strong>Fecha Inicio Obra:</strong> 01-06-2019<br/>
-                   <strong>Fecha Terminación Obra:</strong> 01-12-2020<br/>
-                   <strong>Empleos:</strong> -</p>
-            </div>
-          </a>  
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-          <div class="pw-nav">
-            <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-            </nav>
-          </div>  
         </div>
     </div>
 </template>
-<script setup>
-  import { reactive, computed } from 'vue'
+<script>
+  import Paginator from '../components/minicomponents/Paginator.vue'
   import { useDataStore } from '../store/data_store'
-  import { useLangSwitcherStore } from '../store/langswitcher_store'
+  
+  const BASE_URL_DIR_IMAGES = "./img/public-works"
+  const BASE_URL_DEFAULT_IMAGES = "./img/default.jpg"
 
-  const langSwitcherStore = useLangSwitcherStore()
-  const currentLang = reactive(langSwitcherStore.getCurrentLang)
+  export default {
+    name: 'PublicWorks',
+    components: {
+      Paginator
+    },
+    data() {
+      return {
+        baseUrlDirImages: BASE_URL_DIR_IMAGES,
+        defaultImage: BASE_URL_DEFAULT_IMAGES,
+        paginator: {
+          itemsPerPage: 3,
+          totalItems: 0,
+          initialRange: 0,
+          finalRange: 0
+        }
+      }
+    },
+    computed: {
+      publicWorksData() {
+        return this.setRangeToShow()
+      },
+      setPaginator() {
+        this.paginator = this.setTotalItems()
+        this.paginator = this.setFinalRange()
+        console.log(this.paginator)
+        return this.paginator
+      }
+    },
+    methods: {
+      getAllData() {
+        const dataStore = useDataStore()
+        return Object.values(dataStore.getCurrentData)
+      },
+      setTotalItems() {
+        let paginator = {...this.paginator, totalItems: this.getAllData().length }
+        return paginator
+      },
+      setFinalRange() {
+        let paginator = {...this.paginator, finalRange: this.paginator.itemsPerPage }
+        return paginator
+      },
+      setRangeToShow() {
+        return this.getAllData().slice(this.paginator.initialRange, this.paginator.finalRange)
+      }
+    },
+    watch: {
 
-  const dataStore = useDataStore()
-  const introData = dataStore.getCurrentData.sections.find(s => s.name === 'Intro')
-
-  const education_list = computed(() => introData.education.list.sort( (a, b) => a.order - b.order ))
-  const experience_list = computed(() => introData.experience.list.sort( (a, b) => a.order - b.order ))
-
+    }  
+  }
 </script>

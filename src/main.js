@@ -2,8 +2,9 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import router from './router'
-//import './index.css'
+import './scss/styles.scss'
 import './style.css'
+import * as bootstrap from 'bootstrap'
 import App from './App.vue'
 
 const app = createApp(App)

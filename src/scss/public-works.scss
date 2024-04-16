@@ -32,19 +32,32 @@ $contrast-color: #fff;
             align-items: center;
             justify-content: center;
             padding-left: 1rem;
+            overflow: hidden;
+            max-height: 120px;
+            @media (min-width: 426px) {
+                max-height: 150px;
+            }
+            @media (min-width: 992px) {
+                max-height: 120px;
+            }
+            @media (min-width: 1200px) {
+                max-height: 150px;
+            }
             h3 {
-                font-size: 1rem;
+                text-wrap: pretty;
+                font-size: 0.9rem;
+                font-weight: bold;
                 @media (min-width: 321px) {
-                    font-size: 1.1rem;
+                    font-size: 0.95rem;
                 }
                 @media (min-width: 376px) {
-                    font-size: 1.2rem;
+                    font-size: 0.9rem;
                 }
-                @media (min-width: 769px) {
-                    font-size: 1rem;
+                @media (min-width: 768px) {
+                    font-size: 0.9rem;
                 }
                 @media (min-width: 1200px) {
-                    font-size: 1.2rem;
+                    font-size: 0.9rem;
                 }
             }
         }
@@ -68,8 +81,10 @@ $contrast-color: #fff;
             overflow: hidden;
             border: 1px solid $contrast-color;
             img {
-                width: 150%;
-                height: auto;
+                position: absolute;
+                max-width: unset;
+                width: auto;
+                height: 100%
             }
         }
     }
@@ -84,23 +99,26 @@ $contrast-color: #fff;
         h3 {
             display: block;
             width: 100%;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            font-weight: bold;
             border-top: 1px solid $contrast-color;
             border-bottom: 1px solid $contrast-color;
             padding-top: 5px;
             padding-bottom: 5px;
             margin: 0;
+            overflow: hidden;
+            text-wrap: nowrap;
             @media (min-width: 321px) {
-                font-size: 1.1rem;
+                font-size: 0.9rem;
             }
             @media (min-width: 376px) {
-                font-size: 1.2rem;
+                font-size: 0.9rem;
             }
-            @media (min-width: 769px) {
-                font-size: 1rem;
+            @media (min-width: 768px) {
+                font-size: 0.9rem;
             }
             @media (min-width: 1200px) {
-                font-size: 1.2rem;
+                font-size: 0.9rem;
             }
         }
     }
@@ -112,6 +130,36 @@ $contrast-color: #fff;
         .pw-card-top_right h3 { 
             color: $contrast-color;
             text-decoration: underline; 
+        }
+    }
+    &-bottom { 
+        p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .description {
+            height: auto;    
+            @media (min-width: 768px) {
+                height: 140px;
+            }
+            @media (min-width: 992px) {
+                height: 80px;
+            }
+            @media (min-width: 1200px) {
+                height: 100px;
+            }
+        }
+        .details {
+            height: auto;
+            @media (min-width: 768px) {
+                height: 120px;
+            }
+            @media (min-width: 992px) {
+                height: 115px;
+            }
+            @media (min-width: 1200px) {
+                height: 120px;
+            }
         }
     }
 }
