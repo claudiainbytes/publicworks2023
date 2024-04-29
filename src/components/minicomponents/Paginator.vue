@@ -26,8 +26,10 @@ const { itemsPerPage, totalItems, initialRange, finalRange } = paginator
 const clickButton = (direction) => {
     console.log("Before:", `${JSON.stringify(paginator)}`)
     if (direction === 'Next') { 
-        paginator.initialRange = paginator.finalRange 
-        paginator.finalRange = (paginator.initialRange + paginator.itemsPerPage) 
+        if((paginator.initialRange + paginator.itemsPerPage) <= paginator.totalItems ) {
+            paginator.initialRange = paginator.finalRange 
+            paginator.finalRange = (paginator.initialRange + paginator.itemsPerPage) 
+        }
     } else if (direction === 'Previous') { 
         if((paginator.initialRange - paginator.itemsPerPage) >= 0 ) {
             paginator.initialRange = (paginator.initialRange - paginator.itemsPerPage)
