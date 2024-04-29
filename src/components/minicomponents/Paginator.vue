@@ -24,13 +24,17 @@ const { paginator } = defineProps({ paginator: Object })
 const { itemsPerPage, totalItems, initialRange, finalRange } = paginator
 
 const clickButton = (direction) => {
+    console.log("Before:", `${JSON.stringify(paginator)}`)
     if (direction === 'Next') { 
-        paginator.initialRange = finalRange + 1 
-        paginator.finalRange = (finalRange + itemsPerPage)
-        console.log(`${JSON.stringify(paginator)}`)
-    } else { 
-        
+        paginator.initialRange = paginator.finalRange 
+        paginator.finalRange = (paginator.initialRange + paginator.itemsPerPage) 
+    } else if (direction === 'Previous') { 
+        if((paginator.initialRange - paginator.itemsPerPage) >= 0 ) {
+            paginator.initialRange = (paginator.initialRange - paginator.itemsPerPage)
+            paginator.finalRange = (paginator.initialRange + paginator.itemsPerPage) 
+        }   
     } 
+    console.log("After:", `${JSON.stringify(paginator)}`)
 }
 
 //const arrayItems = Object.values(items).map(item => item)
@@ -42,7 +46,7 @@ const clickButton = (direction) => {
 ////const numPageLinks = numPages / 3 
 
 //console.log(`itemsPerPage ${itemsPerPage}, numPages ${numPages}, numPageLinks  ${numPageLinks}`)
-console.log(`total items ${itemsPerPage}, ${initialRange}, ${finalRange}, ${totalItems}`)
+//console.log(`total items ${itemsPerPage}, ${initialRange}, ${finalRange}, ${totalItems}`)
 
 
 </script>

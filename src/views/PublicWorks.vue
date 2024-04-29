@@ -69,7 +69,7 @@
             </div>
           </div>
           <div class="pw-card-top_right">
-            <h3 v-show="item.nombre_proyecto">{{ item.nombre_proyecto }}</h3>
+            <h3 v-show="item.nombre_proyecto">{{ item.nombre_proyecto }} </h3>
           </div>
         </div>
         <div class="pw-card-middle">
@@ -114,7 +114,7 @@
         baseUrlDirImages: BASE_URL_DIR_IMAGES,
         defaultImage: BASE_URL_DEFAULT_IMAGES,
         paginator: {
-          itemsPerPage: 3,
+          itemsPerPage: 6,
           totalItems: 0,
           initialRange: 0,
           finalRange: 0
@@ -126,9 +126,9 @@
         return this.setRangeToShow()
       },
       setPaginator() {
-        this.paginator = this.setTotalItems()
-        this.paginator = this.setFinalRange()
-        console.log(this.paginator)
+        this.paginator.totalItems = this.setTotalItems()
+        this.paginator.finalRange = this.setFinalRange()
+        console.log("Estado paginador:", this.paginator)
         return this.paginator
       }
     },
@@ -138,12 +138,13 @@
         return Object.values(dataStore.getCurrentData)
       },
       setTotalItems() {
-        let paginator = {...this.paginator, totalItems: this.getAllData().length }
-        return paginator
+        return this.getAllData().length
       },
       setFinalRange() {
-        let paginator = {...this.paginator, finalRange: this.paginator.itemsPerPage }
-        return paginator
+        if (this.paginator.finalRange === 0  ) {
+          return this.paginator.itemsPerPage 
+        }
+        return this.paginator.finalRange 
       },
       setRangeToShow() {
         return this.getAllData().slice(this.paginator.initialRange, this.paginator.finalRange)
