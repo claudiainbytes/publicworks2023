@@ -114,10 +114,12 @@
         baseUrlDirImages: BASE_URL_DIR_IMAGES,
         defaultImage: BASE_URL_DEFAULT_IMAGES,
         paginator: {
-          itemsPerPage: 6,
+          itemsPerPage: 3,
           totalItems: 0,
           initialRange: 0,
-          finalRange: 0
+          finalRange: 0,
+          currentPage: 1,
+          numMaxPagesToShow: 6
         }
       }
     },
