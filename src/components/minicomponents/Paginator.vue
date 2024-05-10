@@ -1,18 +1,18 @@
-<template v-if="">
-    <nav aria-label="Page navigation example">
+<template>
+    <nav v-if="totalItems > 0" aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous" @click="clickButton('Previous')">
+                <a class="page-link" href="#" aria-label="Previous" @click="clickDirectionButton('Previous')">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
             <li  v-for="(page, index) in arrPagesToShow" :key="index" class="page-item">
-                <a v-if="page === paginator.currentPage" class="page-link current-page" :data-index="index" href="#" @click="clickOnPage(page)">{{ page }}</a>
-                <a v-else class="page-link" href="#" :data-index="index" @click="clickOnPage(page)">{{ page }}</a>
+                <a v-if="page === paginator.currentPage" class="page-link current-page" href="#" @click="clickOnPage(page)">{{ page }}</a>
+                <a v-else class="page-link" href="#" @click="clickOnPage(page)">{{ page }}</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next" @click="clickButton('Next')">
+                <a class="page-link" href="#" aria-label="Next" @click="clickDirectionButton('Next')">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>
@@ -32,15 +32,31 @@
 }
 </style>
 <script setup>
+
 import { ref, computed } from 'vue'
 
 const { paginator } = defineProps({ paginator: Object })
 
-const { itemsPerPage, totalItems, initialRange, finalRange, numMaxPagesToShow } = paginator
-
-const numPages = (itemsPerPage > 0 && totalItems > 0) ? (Math.ceil(totalItems / itemsPerPage)) : 0
+let { itemsPerPage, totalItems, numMaxPagesToShow, currentPage } = paginator
 
 const arrPages = []
+
+if ( currentPage <= 0 ) {
+    currentPage = 1
+    paginator.currentPage = currentPage
+}
+
+if ( itemsPerPage <= 0 ) {
+    itemsPerPage = 3
+    paginator.itemsPerPage = itemsPerPage
+}
+
+if ( numMaxPagesToShow <= 0 ) {
+    numMaxPagesToShow = 3
+    paginator.numMaxPagesToShow = numMaxPagesToShow
+}
+
+const numPages = (itemsPerPage > 0 && totalItems > 0) ? (Math.ceil(totalItems / itemsPerPage)) : 0
 
 for(let i = 0; i < numPages; i++) {
     arrPages.push(i + 1)
@@ -50,19 +66,11 @@ const initialRangePage = ref(0)
 const finalRangePage = ref(numMaxPagesToShow)
 
 const arrPagesToShow = computed(() => {
-    console.log("Initial Range Page: ", initialRangePage.value)
-    console.log("Final Range Page: ", finalRangePage.value)
-    console.log("Initial Range: ", initialRange)
-    console.log("Final Range: ", finalRange)
-    console.log("numPages: ", numPages)
     return arrPages.slice(initialRangePage.value, finalRangePage.value)
 })
-console.log("current page:", paginator.currentPage)
-const clickButton = (direction) => {
-    console.log("Before:", `${JSON.stringify(paginator)}`)
-    console.log("current page:", paginator.currentPage)
+
+const clickDirectionButton = (direction) => {
     if (direction === 'Next') { 
-        console.log("versus", paginator.currentPage, " vs ", numPages )
         if(paginator.currentPage < numPages ){
             if((paginator.initialRange + paginator.itemsPerPage) <= paginator.totalItems ) {
                 paginator.initialRange = paginator.finalRange 
@@ -81,13 +89,10 @@ const clickButton = (direction) => {
             paginator.currentPage = initialRangePage.value + 1
         }   
     } 
-    
-    console.log("After:", `${JSON.stringify(paginator)}`)
-    console.log("current page:", paginator.currentPage)
 }
 
 const clickOnPage = (page) => {
-    console.log("Page selected is", page)
+
     if(paginator.currentPage === page){
         if (page < paginator.numMaxPagesToShow){
             paginator.currentPage =  1
@@ -98,7 +103,6 @@ const clickOnPage = (page) => {
             paginator.initialRange = ( page - paginator.itemsPerPage ) * paginator.itemsPerPage
             paginator.finalRange = paginator.initialRange + paginator.itemsPerPage 
         }
-        console.log("paginator current", paginator.currentPage)
         if(paginator.currentPage >= 0){
             initialRangePage.value = paginator.currentPage - 1
             finalRangePage.value = initialRangePage.value + paginator.numMaxPagesToShow
@@ -112,7 +116,6 @@ const clickOnPage = (page) => {
             finalRangePage.value = (page - 1) + paginator.numMaxPagesToShow
         }
     }
-    console.log("After:", `${JSON.stringify(paginator)}`)
 }
 
 </script>

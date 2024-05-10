@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <div class="row mb-4 mb-lg-4">
+  <div class="row mb-4 mb-lg-4 d-none">
     <div class="col-12 col-lg-3">
       <div class="form-group">
         <label for="exampleFormControlSelect1">Area</label>
@@ -114,12 +114,12 @@
         baseUrlDirImages: BASE_URL_DIR_IMAGES,
         defaultImage: BASE_URL_DEFAULT_IMAGES,
         paginator: {
-          itemsPerPage: 3,
-          totalItems: 0,
-          initialRange: 0,
-          finalRange: 0,
-          currentPage: 1,
-          numMaxPagesToShow: 6
+          itemsPerPage: 3, /* Numero de items a mostrar por pagina, por defecto 3 */
+          totalItems: 0, /* Total de items, este se obtiene por medio del la propiedad computada setPaginator */
+          initialRange: 0, /* Rango inicial, numero de posicion inicial dentro del array a partir del rango de elementos a mostrar */
+          finalRange: 0, /* Rango final, numero de posicion final dentro del array a partir del rango de elementos a mostrar */
+          currentPage: 1, /* Pagina actual, inicialmente y por defecto es 1 */
+          numMaxPagesToShow: 6 /* Numero maximo de paginas a mostrar, por defecto es 3 */
         }
       }
     },
@@ -130,7 +130,6 @@
       setPaginator() {
         this.paginator.totalItems = this.setTotalItems()
         this.paginator.finalRange = this.setFinalRange()
-        console.log("Estado paginador:", this.paginator)
         return this.paginator
       }
     },
